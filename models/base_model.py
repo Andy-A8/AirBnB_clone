@@ -16,15 +16,15 @@ class BaseModel:
             **kwargs (dict): key/value pairs of attributes.
         """
 
-        dt.fmt = "%Y-%m-%dT%H:%M:%S.%f"
-        if kwargs and len(kwargs) is not 0:
+        dtfmt = "%Y-%m-%dT%H:%M:%S.%f"
+        if kwargs and len(kwargs) != 0:
             for key in kwargs:
                 if key == "created_at":
                     self.__dict__["created_at"] = datetime.strptime(
-                            kwargs["created_at"], dt.fmt)
+                            kwargs["created_at"], dtfmt)
                 elif key == "updated_at":
                     self.__dict__["updated_at"] = datetime.strptime(
-                            kwargs["updated_at"], dt.fmt)
+                            kwargs["updated_at"], dtfmt)
                 else:
                     self.__dict__[key] = kwargs[key]
         else:
