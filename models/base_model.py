@@ -6,7 +6,7 @@ from datetime import datetime
 
 
 class BaseModel:
-    """Represents the base model of this project"""
+    """Represents the BaseModel of this project"""
 
 
 id = str(uuid.uuid4())
