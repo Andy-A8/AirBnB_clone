@@ -26,4 +26,10 @@ def created_at(self):
 def updated_at(self):
     """Generates the current updated datetime every time object is changed"""
     self.updated_at = datetime.today
-    return (updated_at)
+    return (self.updated_at)
+
+
+def __str__(self):
+    """Returns string representation of BaseModel instance"""
+    return "[{}] ({}) {}".format(self.__class__.__name__,
+                                 self.id, self.__dict__)
