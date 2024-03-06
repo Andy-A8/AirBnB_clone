@@ -18,6 +18,12 @@ def id(self):
 
 
 def created_at(self):
-    """Generates current datetime when an instance is created"""
+    """Generates the current datetime when an instance is created"""
     self.created_at = datetime.today
     return (self.created_at)
+
+
+def updated_at(self):
+    """Generates the current updated datetime every time object is changed"""
+    self.updated_at = datetime.today
+    return (updated_at)
