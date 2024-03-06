@@ -33,3 +33,9 @@ def __str__(self):
     """Returns string representation of BaseModel instance"""
     return "[{}] ({}) {}".format(self.__class__.__name__,
                                  self.id, self.__dict__)
+
+
+def save(self):
+    """Updates the pi attribute updated_at with the current datetime"""
+    self.updated_at = datetime.today()
+    return (self.updated_at)
