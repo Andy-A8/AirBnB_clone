@@ -30,4 +30,4 @@ class FileStorage:
             obj_dict = {}
             for key, value in FileStorage.__objects.items():
                 obj_dict[key] = value to_dict()
-            json.dump(obj_dict,f)
+            json.dump(obj_dict, f)
