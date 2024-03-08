@@ -46,7 +46,7 @@ class BaseModel:
 
     def to_dict(self):
         """Returns a dictionary with all keys/values of__dict__of the instance:
-         instance attributes: created_at and cupdated_at
+            instance attributes: created_at and cupdated_at
             a key __class__ must be added with the class name of the object
             inst.attributes must be converted to string object in IOS format
         """
