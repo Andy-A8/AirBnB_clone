@@ -3,6 +3,7 @@
 
 import uuid
 from datetime import datetime
+import models
 
 
 class BaseModel:
@@ -16,21 +17,22 @@ class BaseModel:
             **kwargs (dict): key/value pairs of attributes.
         """
 
-        dtfmt = "%Y-%m-%dT%H:%M:%S.%f"
+        dt_fmt = "%Y-%m-%dT%H:%M:%S.%f"
         if kwargs and len(kwargs) != 0:
             for key in kwargs:
                 if key == "created_at":
                     self.__dict__["created_at"] = datetime.strptime(
-                            kwargs["created_at"], dtfmt)
+                            kwargs["created_at"], dt_fmt)
                 elif key == "updated_at":
                     self.__dict__["updated_at"] = datetime.strptime(
-                            kwargs["updated_at"], dtfmt)
+                            kwargs["updated_at"], dt_fmt)
                 else:
                     self.__dict__[key] = kwargs[key]
         else:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
+            models.storage.new(self)
 
     def __str__(self):
         """Returns string representation of BaseModel instance"""
@@ -40,6 +42,8 @@ class BaseModel:
     def save(self):
         """Updates the pi attribute updated_at with the current datetime"""
         self.updated_at = datetime.now()
+        """imported storage from FileStorage"""
+        models.storage.save()
 
     def to_dict(self):
         """Returns a dictionary with all keys/values of__dict__of the instance:
