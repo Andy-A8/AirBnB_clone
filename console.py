@@ -20,6 +20,10 @@ class HBNBCommand(cmd.cmd):
         print("")
         return True
 
+    def emptyline(self):
+        """Do not execute anything on ENTER (receive an empty line)"""
+        pass
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
