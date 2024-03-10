@@ -23,6 +23,19 @@ class HBNBCommand(cmd.Cmd):
         """Do not execute anything on ENTER (receive an empty line)"""
         pass
 
+    def do_create(self, arg):
+        """Creates a new instance of BaseModel
+            saves it (to the JSON file) and prints the id.
+        """
+        if not arg or arg == "":
+            print("** class name missing **")
+        elif arg not in HBNBCommand.__classes:
+            print("** class doesn't exist **")
+        else:
+            obj = HBNBCommand.__ClassName[arg]()
+            obj.save()
+            print(obj.id)
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
