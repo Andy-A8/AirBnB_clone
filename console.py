@@ -71,6 +71,28 @@ class HBNBCommand(cmd.Cmd):
                 del storage.all()[key]
                 storage.save()
 
+    def do_all(self, arg):
+        """Prints all string representation of all instances based
+            or not on the same class name. Ex. $ all BaseModel or $ all.
+            The printed result must be a list of strings.
+        """
+        if len(arg) > 0 and arg[0] not in HBNBCommand.__classes:
+            print("** class doesn't exist **")
+        else:
+            str_list = []
+            for obj in storage.all().values():
+                if len(arg) > 0 and arg[0] == obj.__class__.__name__:
+                    str_list.append(obj.__str__())
+                elif len(arg) == 0:
+                    str_list.append(obj.__str__())
+            print(str_list)
+
+    def do_update(self, arg):
+        """Updates an instance based on the class name and id
+            by adding or updating attribute-save the change into the Json file
+        """
+
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
