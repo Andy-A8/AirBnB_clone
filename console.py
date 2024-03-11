@@ -36,6 +36,14 @@ class HBNBCommand(cmd.Cmd):
             obj.save()
             print(obj.id)
 
+    def do_show(self, arg):
+        """Prints the string representation of an instance
+            based on the class name and id.
+        """
+        if not arg or arg == "":
+            print("** class name missing **")
+
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
