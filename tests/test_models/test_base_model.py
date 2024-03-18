@@ -8,6 +8,7 @@ from datetime import datetime
 from models.base_model import BaseModel
 from time import sleep
 import os
+import uuid
 
 
 class TestBaseModel_instantiation(unittest.TestCase):
@@ -28,28 +29,31 @@ class TestBaseModel_instantiation(unittest.TestCase):
     def test_two_models_unique_ids(self):
         bm1 = BaseModel()
         bm2 = BaseModel()
-        self.assertEqual(bm1.id, bm2.id)
+        conv_uuid_one = uuid.UUID(bm1.id)
+        conv_uuid_two = uuid.UUID(bm2.id)
+        self.assertNotEqual(conv_uuid_one, conv_uuid_two)
 
     def test_two_models_different_created_at(self):
         bm1 = BaseModel()
-        sleep(0.05)
         bm2 = BaseModel()
         self.assertLess(bm1.created_at, bm2.created_at)
 
     def test_two_models_different_updated_at(self):
         bm1 = BaseModel()
-        sleep(0.05)
         bm2 = BaseModel()
         self.assertLess(bm1.updated_at, bm2.updated_at)
 
     def test_str_representation(self):
-        dt = datetime.today()
+        dt = datetime.now()
         dt_repr = repr(dt)
         bm = BaseModel()
         bm.id = "123456"
         bm.created_at = bm.updated_at = dt
-        bmstr = bm.__str__()
-        self.assertIn("[BaseModel] (123456)", bmstr)
-        self.assertIn("'id': '123456'", bmstr)
-        self.assertIn("'created_at': " + dt_repr, bmstr)
-        self.assertIn("'updated_at': " + dt_repr, bmstr)
+        self.assertIn("[BaseModel] (123456)", bm.__str__())
+        self.assertIn("'id': '123456'", bm.__str__())
+        self.assertIn("'created_at': " + dt_repr, bm.__str__())
+        self.assertIn("'updated_at': " + dt_repr, bm.__str__())
+
+
+if __name__ == "__main__":
+    unittest.main()
