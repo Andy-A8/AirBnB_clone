@@ -29,9 +29,7 @@ class TestBaseModel_instantiation(unittest.TestCase):
     def test_two_models_unique_ids(self):
         bm1 = BaseModel()
         bm2 = BaseModel()
-        conv_uuid_one = uuid.UUID(bm1.id)
-        conv_uuid_two = uuid.UUID(bm2.id)
-        self.assertNotEqual(conv_uuid_one, conv_uuid_two)
+        self.assertNotEqual(bm1.id, bm2.id)
 
     def test_two_models_different_created_at(self):
         bm1 = BaseModel()
