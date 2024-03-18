@@ -9,8 +9,8 @@ class BaseModel:
     """Represents the BaseModel of this project"""
 
     id = str(uuid.uuid4())
-    created_at = datetime.today()
-    updated_at = datetime.today()
+    created_at = datetime.now()
+    updated_at = datetime.now()
 
     def __str__(self):
         """Returns string representation of BaseModel instance"""
@@ -19,7 +19,7 @@ class BaseModel:
 
     def save(self):
         """Update updated_at with the current datetime."""
-        self.updated_at = datetime.today()
+        self.updated_at = datetime.now()
 
     def to_dict(self):
         """Returns a dictionary with all keys/values of__dict__of the instance:
